@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+var a = 20
 
 # Velocidades iniciales
 @export var walk_speed = 650.0

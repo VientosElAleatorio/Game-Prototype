@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bc6rvnq6v51er"]
+
+[ext_resource type="Script" uid="uid://5dhtysyx3ttk" path="res://Scripts/enemy.gd" id="1_1f0kj"]
+[ext_resource type="PackedScene" uid="uid://bbvjrgsvme3cw" path="res://Model/Enemy/TV_enemigo.glb" id="1_hghv2"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hghv2"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
+size = Vector2(970, 534)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_afpow"]
+size = Vector2(690, 305)
+
+[node name="Enemy" type="Area2D" unique_id=123595629]
+script = ExtResource("1_1f0kj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1074466416]
+position = Vector2(0, -444)
+texture = SubResource("ViewportTexture_hghv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=579787243]
+position = Vector2(0, -257)
+shape = SubResource("RectangleShape2D_hghv2")
+
+[node name="HitArea" type="Area2D" parent="." unique_id=1217996947]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1995492897]
+position = Vector2(0, -676.5)
+shape = SubResource("RectangleShape2D_afpow")
+debug_color = Color(1, 0, 0, 0.43529412)
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1156145097]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1024, 1024)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=783700937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66115296, 1.1399183)
+projection = 1
+current = true
+size = 1.533191
+
+[node name="TV_enemigo" parent="SubViewport" unique_id=1394835630 instance=ExtResource("1_hghv2")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=304219749]
+transform = Transform3D(0.70710677, 0.49999997, -0.49999997, 0, 0.70710677, 0.70710677, 0.70710677, -0.49999997, 0.49999997, 0, 0, 0)
+layers = 5
+light_energy = 10.0
+shadow_enabled = true
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=339487482]
+position = Vector2(0, -257)
+target_position = Vector2(585, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

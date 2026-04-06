@@ -14,6 +14,8 @@ var jumps_left: int = 0
 const TOTAL_JUMPS: int = 2
 var is_slamming: bool = false
 
+var papas = 10
+
 @onready var player_model: Node3D = $SubViewport/Node3D/low_poly_prot
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var state_machine: StateMachine = $StateMachine

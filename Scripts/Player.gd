@@ -4,7 +4,7 @@ var a = 20
 
 # Velocidades iniciales
 @export var walk_speed = 650.0
-@export var run_speed = 1000.0
+@export var run_speed = 1500.0
 @export_range(0, 1) var acceleration = 0.1
 @export_range(0, 1) var deceleration = 0.1
 
